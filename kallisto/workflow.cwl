@@ -26,9 +26,9 @@ outputs:
   kallisto_fusions:
     type: File
     outputSource: kallisto_quant/fusions
-  kallisto_pseudoalignment:
+  pseudoalignment:
     type: File
-    outputSource: kallisto_quant/bam_file
+    outputSource: index_bam/bam_index
 
 steps:
   kallisto_index:
@@ -50,4 +50,13 @@ steps:
       firststrand: firststrand
       secondstrand: secondstrand
     out: [expression_transcript_table, expression_transcript_h5, fusions, bam_file]
-    
+  sort_bam:
+    run: sort_bam.cwl
+    in:
+      bam_file: kallisto_quant/bam_file
+    out: [ sorted_bam ]
+  index_bam:
+    run: bam_index.cwl
+    in:
+      bam_file: sort_bam/sorted_bam
+    out: [ bam_index ]

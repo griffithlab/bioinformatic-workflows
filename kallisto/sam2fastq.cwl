@@ -4,7 +4,7 @@ class: CommandLineTool
 
 cwlVersion: v1.0
 
-baseCommand: [ "java", "-Xmx4g", "-jar", "/usr/bin/picard/picard.jar", "SamToFastq" ]
+baseCommand: [ "java", "-Xmx16g", "-jar", "/usr/bin/picard/picard.jar", "SamToFastq" ]
 
 arguments:
 - valueFrom: reads.1.fastq
@@ -16,8 +16,10 @@ arguments:
 
 requirements:
   - class: DockerRequirement
-    dockerImageId: zlskidmore/picard:2.18.2
-    dockerPull: zlskidmore/picard:2.18.2
+    dockerImageId: zlskidmore/picard:2.18.12
+    dockerPull: zlskidmore/picard:2.18.12
+  - class: ResourceRequirement
+    ramMin: 20000
 
 inputs:
     bam_file:

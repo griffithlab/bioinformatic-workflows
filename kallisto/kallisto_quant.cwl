@@ -8,7 +8,8 @@ requirements:
   - class: DockerRequirement
     dockerImageId: zlskidmore/kallisto:0.44.0
   - class: ResourceRequirement
-    ramMin: 4000
+    ramMin: 20000
+    coresMin: 8
 
 baseCommand: [ "kallisto", "quant" ]
 
@@ -23,6 +24,9 @@ arguments:
     position: 4
   - valueFrom: "--pseudobam"
     position: 5
+  - valueFrom: "8"
+    position: 6
+    prefix: "--threads"
 
 
 inputs:
@@ -35,20 +39,20 @@ inputs:
     type: boolean?
     inputBinding:
       prefix: --fr-stranded
-      position: 6
+      position: 7
   secondstrand:
     type: boolean?
     inputBinding:
       prefix: --fr-stranded
-      position: 6
+      position: 7
   fastq1:
     type: File
     inputBinding:
-      position: 7
+      position: 8
   fastq2:
     type: File
     inputBinding:
-      position: 8
+      position: 9
 
 outputs:
   expression_transcript_table:
