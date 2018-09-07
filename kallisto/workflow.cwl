@@ -38,7 +38,8 @@ steps:
     out: [ kallisto_index ]
   convert2bam:
     run: convert2bam.cwl
-    in: file: bam
+    in:
+      file: bam
     out: [ bam_file ]
   sam2fastq:
     run: sam2fastq.cwl
