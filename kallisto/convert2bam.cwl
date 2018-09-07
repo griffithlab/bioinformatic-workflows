@@ -35,5 +35,6 @@ inputs:
 
 outputs:
   bam_file:
+  type: File
   outputBinding:
     glob: file.bam
