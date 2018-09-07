@@ -36,10 +36,14 @@ steps:
     in:
       reference_file: reference
     out: [ kallisto_index ]
+  convert2bam:
+    run: convert2bam.cwl
+    in: file: bam
+    out: [ bam_file ]
   sam2fastq:
     run: sam2fastq.cwl
     in:
-      bam_file: bam
+      bam_file: convert2bam/bam_file
     out: [ fastq1, fastq2 ]
   kallisto_quant:
     run: kallisto_quant.cwl
