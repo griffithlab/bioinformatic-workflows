@@ -17,7 +17,7 @@ requirements:
 arguments:
   - valueFrom: "8"
     position: 1
-    prefix: "-@"
+    prefix: "--threads"
   - valueFrom: "file.bam"
     position: 2
     prefix: "-o"

@@ -17,7 +17,7 @@ requirements:
 arguments:
   - valueFrom: "8"
     position: 1
-    prefix: "-@"
+    prefix: "--threads"
   - valueFrom: "2G"
     position: 2
     prefix: "-m"
