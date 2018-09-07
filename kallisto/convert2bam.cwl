@@ -10,9 +10,6 @@ requirements:
   - class: DockerRequirement
     dockerImageId: zlskidmore/samtools:1.9
     dockerPull: zlskidmore/samtools:1.9
-  - class: InitialWorkDirRequirement
-    listing:
-      - $(inputs.bam_file)
   - class: ResourceRequirement
     ramMin: 20000
     coresMin: 8
