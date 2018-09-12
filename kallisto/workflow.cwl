@@ -49,7 +49,7 @@ steps:
   sam2fastq:
     run: sam2fastq.cwl
     in:
-      bam_file: namesortbam/bam_file
+      bam_file: namesortbam/sorted_bam
     out: [ fastq1, fastq2 ]
   kallisto_quant:
     run: kallisto_quant.cwl
