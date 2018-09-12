@@ -41,10 +41,15 @@ steps:
     in:
       file: bam
     out: [ bam_file ]
+  namesortbam:
+    run: name_sort_bam.cwl
+    in:
+      bam_file: convert2bam/bam_file
+    out: [ sorted_bam ]
   sam2fastq:
     run: sam2fastq.cwl
     in:
-      bam_file: convert2bam/bam_file
+      bam_file: namesortbam/bam_file
     out: [ fastq1, fastq2 ]
   kallisto_quant:
     run: kallisto_quant.cwl
