@@ -1,0 +1,3 @@
+bam:
+  class: File
+  path: /Users/zskidmor/cwl/Exome_Norm_sorted_mrkdup_bqsr.bam
