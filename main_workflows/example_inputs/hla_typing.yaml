@@ -1,0 +1,5 @@
+################################################################################
+#################### General Inputs ############################################
+bam:
+  class: File
+  path: /Users/zskidmor/Desktop/Exome_Norm_sorted_mrkdup_bqsr.bam
