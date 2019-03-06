@@ -39,8 +39,8 @@ outputs:
   optitype_prediction:
     type: File
     outputBinding:
-      glob: "optitype/optitype_dna.tsv"
+      glob: "optitype/optitype_dna_result.tsv"
   optitype_graph:
     type: File
     outputBinding:
-      glob: "optitype/optitype_dna.pdf"
+      glob: "optitype/optitype_dna_coverage_plot.pdf"
