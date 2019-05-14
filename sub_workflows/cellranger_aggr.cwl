@@ -2,7 +2,7 @@
 
 cwlVersion: v1.0
 class: Workflow
-label: "Cellranger count workflow"
+label: "Cellranger aggr"
 requirements:
     - class: SubworkflowFeatureRequirement
 
