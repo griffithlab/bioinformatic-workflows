@@ -3,6 +3,8 @@
 cwlVersion: v1.0
 class: Workflow
 label: "kallisto workflow"
+requirements:
+  - class: SubworkflowFeatureRequirement
 
 inputs:
   bam:
@@ -32,41 +34,31 @@ outputs:
 
 steps:
   kallisto_index:
-    run: build_kallisto_index.cwl
+    run: ../tools/build_kallisto_index.cwl
     in:
       reference_file: reference
     out: [ kallisto_index ]
-  convert2bam:
-    run: convert2bam.cwl
+  bam2fastq:
+    run: ../sub_workflows/bam2fastq.cwl
     in:
-      file: bam
-    out: [ bam_file ]
-  namesortbam:
-    run: name_sort_bam.cwl
-    in:
-      bam_file: convert2bam/bam_file
-    out: [ sorted_bam ]
-  sam2fastq:
-    run: sam2fastq.cwl
-    in:
-      bam_file: namesortbam/sorted_bam
-    out: [ fastq1, fastq2 ]
+      bam: bam
+    out: [fastq1, fastq2]
   kallisto_quant:
-    run: kallisto_quant.cwl
+    run: ../tools/kallisto_quant.cwl
     in:
       kallisto_index: kallisto_index/kallisto_index
-      fastq1: sam2fastq/fastq1
-      fastq2: sam2fastq/fastq2
+      fastq1: bam2fastq/fastq1
+      fastq2: bam2fastq/fastq2
       firststrand: firststrand
       secondstrand: secondstrand
     out: [expression_transcript_table, expression_transcript_h5, fusions, bam_file]
   sort_bam:
-    run: sort_bam.cwl
+    run: ../tools/sort_bam.cwl
     in:
       bam_file: kallisto_quant/bam_file
     out: [ sorted_bam ]
   index_bam:
-    run: bam_index.cwl
+    run: ../tools/bam_index.cwl
     in:
       bam_file: sort_bam/sorted_bam
     out: [ bam_index ]
