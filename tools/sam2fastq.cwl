@@ -20,7 +20,6 @@ arguments:
 
 requirements:
   - class: DockerRequirement
-    dockerImageId: zlskidmore/picard:2.18.12
     dockerPull: zlskidmore/picard:2.18.12
   - class: ResourceRequirement
     ramMin: 30000

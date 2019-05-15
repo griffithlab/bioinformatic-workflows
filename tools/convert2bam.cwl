@@ -8,7 +8,6 @@ baseCommand: [ "samtools", "view" ]
 
 requirements:
   - class: DockerRequirement
-    dockerImageId: zlskidmore/samtools:1.9
     dockerPull: zlskidmore/samtools:1.9
   - class: ResourceRequirement
     ramMin: 20000

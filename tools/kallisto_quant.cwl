@@ -6,7 +6,7 @@ cwlVersion: v1.0
 
 requirements:
   - class: DockerRequirement
-    dockerImageId: zlskidmore/kallisto:0.44.0
+    dockerPull: zlskidmore/kallisto:0.45.1
   - class: ResourceRequirement
     ramMin: 20000
     coresMin: 8

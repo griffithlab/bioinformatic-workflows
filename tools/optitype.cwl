@@ -8,7 +8,6 @@ baseCommand: [ "python", "/usr/local/bin/OptiType-1.3.2/OptiTypePipeline.py" ]
 
 requirements:
   - class: DockerRequirement
-    dockerImageId: zlskidmore/optitype:1.3.2
     dockerPull: zlskidmore/optitype:1.3.2
   - class: ResourceRequirement
     ramMin: 30000

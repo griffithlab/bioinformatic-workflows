@@ -8,7 +8,6 @@ baseCommand: [ "samtools", "index" ]
 
 requirements:
   - class: DockerRequirement
-    dockerImageId: zlskidmore/samtools:1.9
     dockerPull: zlskidmore/samtools:1.9
   - class: InitialWorkDirRequirement
     listing:
