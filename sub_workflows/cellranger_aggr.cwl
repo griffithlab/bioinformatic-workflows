@@ -28,4 +28,4 @@ outputs:
   out_dir:
     type: Directory
     outputBinding:
-      glob: "$(inputs.sample_name)/outs/"
+      glob: "$(inputs.sample_name)_AGGR/outs/"
