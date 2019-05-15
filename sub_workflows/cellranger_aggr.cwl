@@ -1,37 +1,31 @@
 #!/usr/bin/env cwl-runner
 
 cwlVersion: v1.0
-class: Workflow
+class: CommandLineTool
 label: "Cellranger aggr"
+#requirements:
+#    - class: SubworkflowFeatureRequirement
+
+baseCommand: ["/opt/cellranger-3.0.1/cellranger","aggr"]
+arguments: ["--id=$(inputs.sample_name)","--csv=$(inputs.csv_file)","--localcores=$(runtime.cores)","--localmem=$(runtime.ram/1000)","--normalize=mapped"]
+
 requirements:
-    - class: SubworkflowFeatureRequirement
+  - class: DockerRequirement
+  dockerPull: "registry.gsc.wustl.edu/mgi/cellranger:3.0.1"
+  - class: ResourceRequirement
+  ramMin: 64000
+  coresMin: 8
 
 inputs:
-  bam:
+  csv_file:
     type: File
-    doc: bam file to convert to fastq, also takes sam/cram
-
+    inputBinding:
+      prefix: --csv=
+      position: 1
+      separate: false
+    doc: "CSV file containing samples to be aggregated."
 outputs:
-  fastq1:
-    type: File
-    outputSource: sam2fastq/fastq1
-  fastq2:
-    type: File
-    outputSource: sam2fastq/fastq2
-
-steps:
-  convert2bam:
-    run: ../tools/convert2bam.cwl
-    in:
-      file: bam
-    out: [ bam_file ]
-  namesortbam:
-    run: ../tools/name_sort_bam.cwl
-    in:
-      bam_file: convert2bam/bam_file
-    out: [ sorted_bam ]
-  sam2fastq:
-    run: ../tools/sam2fastq.cwl
-    in:
-      bam_file: namesortbam/sorted_bam
-    out: [ fastq1, fastq2 ]
+  out_dir:
+    type: Directory
+    outputBinding:
+      glob: "$(inputs.sample_name)/outs/"
