@@ -7,7 +7,7 @@ label: "Cellranger aggr"
 #    - class: SubworkflowFeatureRequirement
 
 baseCommand: ["/opt/cellranger-3.0.1/cellranger","aggr"]
-arguments: ["--id=$(inputs.sample_name)","--csv=$(inputs.csv_file)","--localcores=$(runtime.cores)","--localmem=$(runtime.ram/1000)","--normalize=mapped"]
+arguments: ["--id=$(inputs.sample_name)_AGGR","--csv=$(inputs.csv_file)","--localcores=$(runtime.cores)","--localmem=$(runtime.ram/1000)","--normalize=mapped"]
 
 requirements:
   - class: DockerRequirement
