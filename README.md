@@ -1,6 +1,6 @@
 # Description
 
-This repository holds various bioinformatic workflows. Each workflow is broken down as a main or sub workflow and has an associated .yaml file specifying inputs and are named to correspond with the workflow they are associated with. A list of each available workflow is provided below, for a more complete description of a specific workflow see the github wiki.
+This repository holds various bioinformatic workflows. Each workflow is broken down as a main or sub workflow and has an associated .yaml file specifying inputs and are named to correspond with the workflow they are associated with. A list of each available workflow is provided below, for a more complete description of a specific workflow see the [github wiki](https://github.com/griffithlab/bioinformatic-workflows/wiki).
 
 # Main Worfklows
 
