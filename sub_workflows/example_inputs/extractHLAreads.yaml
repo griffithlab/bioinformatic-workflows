@@ -1,0 +1,6 @@
+bam:
+  class: File
+  path: /Users/zskidmor/cwl/Exome_Norm_sorted_mrkdup_bqsr.bam
+filter_bed:
+  type: File
+  path: ../../data/prospective_hla_regions.bed

@@ -12,6 +12,7 @@ requirements:
   - class: ResourceRequirement
     ramMin: 30000
     tmpdirMin: 30000
+    coresMin: 8
 
 arguments:
   - valueFrom: "optitype"
