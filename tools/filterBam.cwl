@@ -26,6 +26,7 @@ arguments:
 inputs:
   bam_file:
     type: File
+    secondaryFiles: [^.bai]
     inputBinding:
       position: 6
   filter_flag:
