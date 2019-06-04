@@ -19,7 +19,7 @@ inputs:
   bam_file:
     type: File
     inputBinding:
-      valueFrom: "$(runtime.outdir)/$(inputs.bam.basename)"
+      valueFrom: "$(runtime.outdir)/$(inputs.bam_file.basename)"
       position: 1
 
 outputs:
