@@ -42,7 +42,7 @@ steps:
   exractUnmappedReadPairs:
     run: ../tools/filterBam.cwl
     in:
-      bam: index/bam_index
+      bam: index_bam/bam_index
       filter_flag:
         valueFrom: "-f 12"
       filter_bed: filter_bed
@@ -50,7 +50,7 @@ steps:
   exractUnmappedReadWithMappedMate:
     run: ../tools/filterBam.cwl
     in:
-      bam: index/bam_index
+      bam: index_bam/bam_index
       filter:
         valueFrom: "-f 4 -F 8"
       filter_bed: filter_bed
@@ -65,7 +65,7 @@ steps:
     exractMappedReadWithMappedMate:
       run: ../tools/filterBam.cwl
       in:
-        bam: index/bam_index
+        bam: index_bam/bam_index
         filter:
           valueFrom: "-F 12"
         filter_bed: filter_bed
