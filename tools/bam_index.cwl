@@ -4,7 +4,7 @@ class: CommandLineTool
 
 cwlVersion: v1.0
 
-baseCommand: [ "samtools", "index" ]
+baseCommand: [ "samtools", "index"]
 
 requirements:
   - class: DockerRequirement
@@ -15,11 +15,11 @@ requirements:
   - class: ResourceRequirement
     ramMin: 4000
 
-
 inputs:
   bam_file:
     type: File
     inputBinding:
+      valueFrom: "$(runtime.outdir)/$(inputs.bam.basename)"
       position: 1
 
 outputs:
