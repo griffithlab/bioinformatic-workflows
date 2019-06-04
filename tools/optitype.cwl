@@ -10,8 +10,8 @@ requirements:
   - class: DockerRequirement
     dockerPull: zlskidmore/optitype:1.3.2
   - class: ResourceRequirement
-    ramMin: 30000
-    tmpdirMin: 30000
+    ramMin: 40000
+    tmpdirMin: 40000
     coresMin: 8
 
 arguments:

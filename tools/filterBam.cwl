@@ -23,7 +23,6 @@ arguments:
   - valueFrom: "-b"
     position: 3
 
-
 inputs:
   bam_file:
     type: File
