@@ -27,6 +27,9 @@ outputs:
   bam4:
     type: File
     outputSource: exractUnmappedReadPairs/bamFile
+  bam5:
+    type: File
+    outputSource: mergeBams/mergedBam
 
 steps:
   convert2bam:
@@ -63,11 +66,19 @@ steps:
         valueFrom: "-f 8 -F 4"
       filter_bed: filter_bed
       out: [ bamFile ]
-    exractMappedReadWithMappedMate:
-      run: ../tools/filterBam.cwl
-      in:
-        bam_file: index_bam/bam_index
-        filter_flag:
-          valueFrom: "-F 12"
-        filter_bed: filter_bed
-      out: [ bamFile ]
+  exractMappedReadWithMappedMate:
+    run: ../tools/filterBam.cwl
+    in:
+      bam_file: index_bam/bam_index
+      filter_flag:
+        valueFrom: "-F 12"
+      filter_bed: filter_bed
+    out: [ bamFile ]
+  mergeBams:
+    run: ../tools/mergeBams.cwl
+    in:
+      bamFiles: [exractUnmappedReadPairs/bamFile,
+                 exractUnmappedReadWithMappedMate/bamFile,
+                 exractMappedReadWithUnmappedMate/bamFile,
+                 exractMappedReadWithMappedMate/bamFile]
+    out: [ mergedBam ]
