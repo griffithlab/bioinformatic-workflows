@@ -65,7 +65,7 @@ steps:
       filter_flag:
         valueFrom: "-f 8 -F 4"
       filter_bed: filter_bed
-      out: [ bamFile ]
+    out: [ bamFile ]
   exractMappedReadWithMappedMate:
     run: ../tools/filterBam.cwl
     in:
