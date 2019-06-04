@@ -9,13 +9,22 @@ requirements:
 inputs:
   bam:
     type: File
-    doc: Aligned bam/sam/cram file for which to extract hla reads
+    doc: Aligned coordinate sorted bam/sam/cram file for which to extract hla reads
   filter_bed:
     type: File
     doc: A bed file for samtools to filter against when extracting HLA reads, should contain chr6/6 and any HLA sequencing for which the original bam has been aligned to.
 
 outputs:
-  hla_bam:
+  bam1:
+    type: File
+    outputSource: exractUnmappedReadPairs/bamFile
+  bam2:
+    type: File
+    outputSource: exractUnmappedReadPairs/bamFile
+  bam3:
+    type: File
+    outputSource: exractUnmappedReadPairs/bamFile
+  bam4:
     type: File
     outputSource: exractUnmappedReadPairs/bamFile
 
@@ -25,10 +34,15 @@ steps:
     in:
       file: bam
     out: [ bam_file ]
+  index_bam:
+    run: ../tools/bam_index.cwl
+    in:
+      bam_file: convert2bam/bam_file
+    out: [ bam_index ]
   exractUnmappedReadPairs:
     run: ../tools/filterBam.cwl
     in:
-      bam: convert2bam/bam_file
+      bam: convert2bam/bam_index
       filter_flag:
         valueFrom: "-f 12"
       filter_bed: filter_bed
@@ -36,7 +50,7 @@ steps:
   exractUnmappedReadWithMappedMate:
     run: ../tools/filterBam.cwl
     in:
-      bam: convert2bam/bam_file
+      bam: convert2bam/bam_index
       filter:
         valueFrom: "-f 4 -F 8"
       filter_bed: filter_bed
@@ -44,14 +58,14 @@ steps:
   exractMappedReadWithUnmappedMate:
     run: ../tools/filterBam.cwl
     in:
-      bam: convert2bam/bam_file
+      bam: convert2bam/bam_index
       filter:
         valueFrom: "-f 8 -F 4"
       filter_bed: filter_bed
     exractMappedReadWithMappedMate:
       run: ../tools/filterBam.cwl
       in:
-        bam: convert2bam/bam_file
+        bam: convert2bam/bam_index
         filter:
           valueFrom: "-F 12"
         filter_bed: filter_bed
