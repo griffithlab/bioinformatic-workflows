@@ -26,9 +26,9 @@ arguments:
 inputs:
   bam_file:
     type: File
-    secondaryFiles: [^.bai]
+    secondaryFiles: [.bai]
     inputBinding:
-      position: 6
+      position: 5
   filter_flag:
     type: string
     inputBinding:
@@ -36,7 +36,7 @@ inputs:
   filter_bed:
     type: File
     inputBinding:
-      position: 5
+      position: 6
 
 outputs:
   bamFile:
