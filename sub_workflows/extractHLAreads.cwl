@@ -82,7 +82,7 @@ steps:
                  extractMappedReadWithUnmappedMate/bamFile,
                  extractMappedReadWithMappedMate/bamFile]
     out: [ mergedBam ]
-  index_bam:
+  index_merge_bam:
     run: ../tools/bam_index.cwl
     in:
       bam_file: mergeBams/mergedBam
