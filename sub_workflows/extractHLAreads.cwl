@@ -17,16 +17,16 @@ inputs:
 outputs:
   bam1:
     type: File
-    outputSource: exractUnmappedReadPairs/bamFile
+    outputSource: extractUnmappedReadPairs/bamFile
   bam2:
     type: File
-    outputSource: exractUnmappedReadPairs/bamFile
+    outputSource: extractUnmappedReadWithMappedMate/bamFile
   bam3:
     type: File
-    outputSource: exractUnmappedReadPairs/bamFile
+    outputSource: extractMappedReadWithUnmappedMate/bamFile
   bam4:
     type: File
-    outputSource: exractUnmappedReadPairs/bamFile
+    outputSource: extractMappedReadWithMappedMate/bamFile
   bam5:
     type: File
     outputSource: mergeBams/mergedBam
@@ -42,7 +42,7 @@ steps:
     in:
       bam_file: convert2bam/bam_file
     out: [ bam_index ]
-  exractUnmappedReadPairs:
+  extractUnmappedReadPairs:
     run: ../tools/filterBam.cwl
     in:
       bam_file: index_bam/bam_index
@@ -50,7 +50,7 @@ steps:
         valueFrom: "-f 12"
       filter_bed: filter_bed
     out: [ bamFile ]
-  exractUnmappedReadWithMappedMate:
+  extractUnmappedReadWithMappedMate:
     run: ../tools/filterBam.cwl
     in:
       bam_file: index_bam/bam_index
@@ -58,7 +58,7 @@ steps:
         valueFrom: "-f 4 -F 8"
       filter_bed: filter_bed
     out: [ bamFile ]
-  exractMappedReadWithUnmappedMate:
+  extractMappedReadWithUnmappedMate:
     run: ../tools/filterBam.cwl
     in:
       bam_file: index_bam/bam_index
@@ -66,7 +66,7 @@ steps:
         valueFrom: "-f 8 -F 4"
       filter_bed: filter_bed
     out: [ bamFile ]
-  exractMappedReadWithMappedMate:
+  extractMappedReadWithMappedMate:
     run: ../tools/filterBam.cwl
     in:
       bam_file: index_bam/bam_index
@@ -77,8 +77,8 @@ steps:
   mergeBams:
     run: ../tools/mergeBams.cwl
     in:
-      bamFiles: [exractUnmappedReadPairs/bamFile,
-                 exractUnmappedReadWithMappedMate/bamFile,
-                 exractMappedReadWithUnmappedMate/bamFile,
-                 exractMappedReadWithMappedMate/bamFile]
+      bamFiles: [extractUnmappedReadPairs/bamFile,
+                 extractUnmappedReadWithMappedMate/bamFile,
+                 extractMappedReadWithUnmappedMate/bamFile,
+                 extractMappedReadWithMappedMate/bamFile]
     out: [ mergedBam ]
