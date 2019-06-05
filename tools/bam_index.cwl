@@ -27,4 +27,4 @@ outputs:
     type: File
     secondaryFiles: [.bai]
     outputBinding:
-      glob: "*.bam"
+      glob: $(inputs.bam_file.basename)
