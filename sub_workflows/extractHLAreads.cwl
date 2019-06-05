@@ -15,21 +15,22 @@ inputs:
     doc: A bed file for samtools to filter against when extracting HLA reads, should contain chr6/6 and any HLA sequencing for which the original bam has been aligned to.
 
 outputs:
-  bam1:
-    type: File
-    outputSource: extractUnmappedReadPairs/bamFile
-  bam2:
-    type: File
-    outputSource: extractUnmappedReadWithMappedMate/bamFile
-  bam3:
-    type: File
-    outputSource: extractMappedReadWithUnmappedMate/bamFile
-  bam4:
-    type: File
-    outputSource: extractMappedReadWithMappedMate/bamFile
-  bam5:
+  hlaBam:
     type: File
     outputSource: mergeBams/mergedBam
+    secondaryFiles: [.bai]
+  unmappedBam:
+    type: File
+    outputSource:  extractUnmappedReadPairs/bamFile
+  1matemapped:
+    type: File
+    outputSource:  extractUnmappedReadWithMappedMate/bamFile
+  2matemapped:
+    type: File
+    outputSource:  extractMappedReadWithUnmappedMate/bamFile
+  bothmapped:
+    type: File
+    outputSource:  extractMappedReadWithMappedMate/bamFile
 
 steps:
   convert2bam:
@@ -48,7 +49,6 @@ steps:
       bam_file: index_bam/bam_index
       filter_flag:
         valueFrom: "-f 12"
-      filter_bed: filter_bed
     out: [ bamFile ]
   extractUnmappedReadWithMappedMate:
     run: ../tools/filterBam.cwl
@@ -82,3 +82,8 @@ steps:
                  extractMappedReadWithUnmappedMate/bamFile,
                  extractMappedReadWithMappedMate/bamFile]
     out: [ mergedBam ]
+  index_bam:
+    run: ../tools/bam_index.cwl
+    in:
+      bam_file: mergeBams/mergedBam
+    out: [ bam_index ]

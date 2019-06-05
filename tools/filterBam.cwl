@@ -34,7 +34,7 @@ inputs:
     inputBinding:
       position: 4
   filter_bed:
-    type: File
+    type: File?
     inputBinding:
       position: 6
 
