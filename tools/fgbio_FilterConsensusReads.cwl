@@ -29,17 +29,17 @@ inputs:
       position: 3
       prefix: "--ref"
   min_reads:
-    type: string
+    type: string[]
     inputBinding:
       position: 4
       prefix: "--min-reads"
   max_base_error_rate:
-    type: string
+    type: string[]
     inputBinding:
       position: 5
       prefix: "--max-base-error-rate"
   max_read_error_rate:
-    type: string
+    type: string[]
     inputBinding:
       position: 6
       prefix: "--max-read-error-rate"

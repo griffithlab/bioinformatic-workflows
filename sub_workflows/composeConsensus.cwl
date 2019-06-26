@@ -16,8 +16,7 @@ inputs:
     doc: Unaligned bam file for which to align
   reference:
     type: File
-    secondaryFiles: [ ^.dict ]
-    doc: Reference fasta to use for merging in picard::MergeBamAlignment, should be associated with a picard sequence dictionary
+    doc: Reference fasta to use for merging in picard::MergeBamAlignment
 #  FastqToBam_input:
 #    type: File[]
 #    doc: Array of fastq files for which to convert to bam with UMI (i.e. R1, R2, I1, I2), used in fgbio::FastqToBam
@@ -80,11 +79,11 @@ steps:
 #    in:
 #      reference: reference
 #    out: [ referenceIndex ]
-#  fastaDict:
-#    run: ../tools/picard_CreateSequenceDictionary.cwl
-#    in:
-#      reference: reference
-#    out: [ referenceDict ]
+  createReferenceDict:
+    run: ../tools/picard_CreateSequenceDictionary.cwl
+    in:
+      reference: reference
+    out: [ referenceDict ]
 #  bwaIndex:
 #    run: ../tools/bwaIndex.cwl
 #    in:
@@ -104,7 +103,7 @@ steps:
     in:
       bwaIndex: bwaIndex
       bam: bam
-      reference: reference
+      reference: createReferenceDict/referenceDict
     out: [ mergedBam ]
   umiMarkDuplicates:
     run: ../tools/picard_UmiAwareMarkDuplicatesWithMateCigar.cwl
@@ -133,7 +132,7 @@ steps:
     in:
       bwaIndex: bwaIndex
       bam: constructConsensus/consensusBam
-      reference: reference
+      reference: createReferenceDict/referenceDict
     out: [ mergedBam ]
   filterConsensus:
     run: ../tools/fgbio_FilterConsensusReads.cwl

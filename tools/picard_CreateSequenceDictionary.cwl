@@ -33,4 +33,4 @@ outputs:
     type: File
     secondaryFiles: [^.dict]
     outputBinding:
-      glob: $(inputs.input.basename)
+      glob: $(runtime.outdir)/$(inputs.input.basename)
