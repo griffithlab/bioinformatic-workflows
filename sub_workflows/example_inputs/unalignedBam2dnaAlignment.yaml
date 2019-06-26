@@ -1,0 +1,9 @@
+bwaIndex:
+  class: File
+  path: Homo_sapiens.GRCh38.dna.primary_assembly.fa
+bam:
+  class: File
+  path: 
+reference:
+  class: File
+  path: Homo_sapiens.GRCh38.dna.primary_assembly.fa
