@@ -36,7 +36,7 @@ steps:
     run: ../tools/bwa_mem.cwl
     in:
       reference: bwaIndex
-      fastq: [ unalignedBAMToFastq/fastq1, unalignedBAMToFastq/fastq1 ]
+      fastq: [ unalignedBAMToFastq/fastq1, unalignedBAMToFastq/fastq2 ]
     out: [ sam_alignment ]
   convertSamToBam:
     run: ../tools/convert2bam.cwl
