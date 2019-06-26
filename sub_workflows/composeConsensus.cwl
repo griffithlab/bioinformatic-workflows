@@ -53,20 +53,20 @@ inputs:
     default: '1'
     doc: The minimum number of reads for a consensus to be produced in fgbio::CallMolecularConsensus
   FilterConsensus_min_reads:
-    type: string?
-    default: '3 1 1'
+    type: string[]?
+    default: [3, 1, 1]
     doc: minimum number of reads supporting a consensus base/read, given as a trio for final consensus, first single-strand consensus, other single-strand consensus in fgbio::FilterConsensusReads
   FilterConsensus_min_base_quality:
     type: string?
     default: '30'
     doc: bases below this value are masked, (annotated as N), in fgbio::FilterConsensusReads
   FilterConsensus_max_base_error_rate:
-    type: string?
-    default: '.1 .1 .1'
+    type: string[]?
+    default: [.1, .1, .1]
     doc: maximum error rate for a single consensus base, given as a trio for final consensus, first single-strand consensus, other single-strand consensus in fgbio::FilterConsensusReads
   FilterConsensus_max_read_error_rate:
-    type: string?
-    default: '.025 .025 .025'
+    type: string[]?
+    default: [.025, .025, .025]
     doc: maximum read error rate, given as a trio for final consensus, first single-strand consensus, other single-strand consensus in fgbio::FilterConsensusReads
 
 outputs:
