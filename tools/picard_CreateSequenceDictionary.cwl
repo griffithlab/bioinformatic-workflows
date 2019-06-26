@@ -16,20 +16,21 @@ requirements:
 baseCommand: [ "java", "-Xmx22g", "-jar", "/usr/bin/picard/picard.jar", "CreateSequenceDictionary"]
 
 arguments:
-  - valueFrom: "sorted.bam"
+  - valueFrom: $(inputs.input.basename).dict
     position: 1
-    prefix: "OUTPUT=reference.dict"
+    prefix: "OUTPUT="
 
 inputs:
   input:
     type: File
     inputBinding:
       position: 2
-      valueFrom: "$(runtime.outdir)/$(inputs.bam_file.basename)"
+      valueFrom: "$(runtime.outdir)/$(inputs.input.basename)"
       prefix: "INPUT="
 
 outputs:
-  sorted_bam:
+  referenceDict
     type: File
+    secondaryFiles: [^.dict]
     outputBinding:
-      glob: "sorted.bam"
+      glob: $(inputs.input.basename)
