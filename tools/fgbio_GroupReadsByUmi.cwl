@@ -10,7 +10,7 @@ requirements:
   - class: ResourceRequirement
     ramMin: 24000
 
-baseCommand: [ "java", "-Xmx22g", "-jar", "/usr/local/bin/fgbio.jar", "GroupReadsByUMI"]
+baseCommand: [ "java", "-Xmx22g", "-jar", "/usr/local/bin/fgbio.jar", "GroupReadsByUmi"]
 
 arguments:
   - valueFrom: "groupByUmi.bam"

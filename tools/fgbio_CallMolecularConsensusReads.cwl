@@ -27,7 +27,7 @@ inputs:
     type: string
     inputBinding:
       position: 3
-      prefix: "--strategy"
+      prefix: "--min-reads"
 
 outputs:
   consensusBam:

@@ -72,7 +72,7 @@ inputs:
 outputs:
   test:
     type: File
-    outputSource: filterConsensus/filteredConsensusBam
+    outputSource: indexFilteredConsensusBam/bam_index
 
 steps:
 #  fastaIndex:
@@ -145,3 +145,8 @@ steps:
       max_read_error_rate: FilterConsensus_max_read_error_rate
       min_base_quality: FilterConsensus_min_base_quality
     out: [ filteredConsensusBam ]
+  indexFilteredConsensusBam:
+    run: ../tools/bam_index.cwl
+    in:
+      bam_file: filterConsensus/filteredConsensusBam
+    out: [ bam_index ]
