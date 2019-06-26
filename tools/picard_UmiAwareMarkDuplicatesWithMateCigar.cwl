@@ -29,20 +29,15 @@ inputs:
     inputBinding:
       position: 4
       prefix: "INPUT="
-  sort_order:
-    type: string
-    inputBinding:
-      position: 5
-      prefix: "SORT_ORDER="
   assume_sort_order:
     type: string
     inputBinding:
-      position: 6
+      position: 5
       prefix: "ASSUME_SORT_ORDER="
   remove_sequencing_duplicates:
     type: string
     inputBinding:
-      position: 7
+      position: 6
       prefix: "REMOVE_SEQUENCING_DUPLICATES="
 
 outputs:

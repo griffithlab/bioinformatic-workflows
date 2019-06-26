@@ -110,8 +110,6 @@ steps:
     run: ../tools/picard_UmiAwareMarkDuplicatesWithMateCigar.cwl
     in:
       input: alignUMIBAM/mergedBam
-      sort_order:
-        valueFrom: "coordinate"
       assume_sort_order:
         valueFrom: "coordinate"
       remove_sequencing_duplicates:
