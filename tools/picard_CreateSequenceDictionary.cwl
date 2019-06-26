@@ -21,12 +21,12 @@ arguments:
     prefix: "OUTPUT="
 
 inputs:
-  input:
+  reference:
     type: File
     inputBinding:
       position: 2
       valueFrom: "$(runtime.outdir)/$(inputs.input.basename)"
-      prefix: "INPUT="
+      prefix: "REFERENCE="
 
 outputs:
   referenceDict:
