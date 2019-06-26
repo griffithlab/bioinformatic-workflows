@@ -29,8 +29,8 @@ inputs:
       prefix: "INPUT="
 
 outputs:
-  referenceDict
+  referenceDict:
     type: File
     secondaryFiles: [^.dict]
     outputBinding:
-      glob: $(runtime.outdir)/$(inputs.input.basename)
+      glob: $(inputs.input.basename)
