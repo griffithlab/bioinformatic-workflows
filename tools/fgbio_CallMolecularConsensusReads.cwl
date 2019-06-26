@@ -10,7 +10,7 @@ requirements:
   - class: ResourceRequirement
     ramMin: 24000
 
-baseCommand: [ "java", "-Xmx8g", "-jar", "/usr/local/bin/fgbio.jar", "CallMolecularConsensusReads"]
+baseCommand: [ "java", "-Xmx22g", "-jar", "/usr/local/bin/fgbio.jar", "CallMolecularConsensusReads"]
 
 arguments:
   - valueFrom: "consensus.bam"

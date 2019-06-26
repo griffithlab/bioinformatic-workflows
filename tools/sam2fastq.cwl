@@ -11,7 +11,7 @@ requirements:
     ramMin: 30000
     tmpdirMin: 30000
 
-baseCommand: [ "java", "-Xmx6g", "-jar", "/usr/bin/picard/picard.jar", "SamToFastq" ]
+baseCommand: [ "java", "-Xmx28g", "-jar", "/usr/bin/picard/picard.jar", "SamToFastq" ]
 
 arguments:
   - valueFrom: reads.1.fastq

@@ -10,7 +10,7 @@ requirements:
   - class: ResourceRequirement
     ramMin: 24000
 
-baseCommand: [ "java", "-Xmx8g", "-jar", "/usr/bin/picard/picard.jar", "UmiAwareMarkDuplicatesWithMateCigar"]
+baseCommand: [ "java", "-Xmx22g", "-jar", "/usr/bin/picard/picard.jar", "UmiAwareMarkDuplicatesWithMateCigar"]
 
 arguments:
   - valueFrom: "umiAwareMrkDup.bam"

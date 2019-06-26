@@ -17,7 +17,7 @@ arguments:
   - valueFrom: "8"
     position: 1
     prefix: "--threads"
-  - valueFrom: "2G"
+  - valueFrom: "18G"
     position: 2
     prefix: "-m"
 

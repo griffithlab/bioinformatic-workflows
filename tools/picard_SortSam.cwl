@@ -10,7 +10,7 @@ requirements:
   - class: ResourceRequirement
     ramMin: 24000
 
-baseCommand: [ "java", "-Xmx24g", "-jar", "/usr/bin/picard/picard.jar", "SortSam"]
+baseCommand: [ "java", "-Xmx22g", "-jar", "/usr/bin/picard/picard.jar", "SortSam"]
 
 arguments:
   - valueFrom: "sorted.bam"

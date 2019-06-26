@@ -8,7 +8,7 @@ requirements:
   - class: DockerRequirement
     dockerPull: zlskidmore/bwa:0.7.17
   - class: ResourceRequirement
-    ramMin: 8000
+    ramMin: 24000
     coresMin: 12
 
 baseCommand: [ "bwa", "mem"]
