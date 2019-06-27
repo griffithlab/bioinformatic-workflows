@@ -11,12 +11,12 @@ requirements:
     ramMin: 24000
   - class: InitialWorkDirRequirement
     listing:
-      - $(inputs.input)
+      - $(inputs.reference)
 
 baseCommand: [ "java", "-Xmx22g", "-jar", "/usr/bin/picard/picard.jar", "CreateSequenceDictionary"]
 
 arguments:
-  - valueFrom: $(inputs.input.basename).dict
+  - valueFrom: $(inputs.reference.nameroot).dict
     position: 1
     prefix: "OUTPUT="
 
@@ -25,7 +25,7 @@ inputs:
     type: File
     inputBinding:
       position: 2
-      valueFrom: "$(runtime.outdir)/$(inputs.input.basename)"
+      valueFrom: "$(runtime.outdir)/$(inputs.reference.basename)"
       prefix: "REFERENCE="
 
 outputs:
@@ -33,4 +33,4 @@ outputs:
     type: File
     secondaryFiles: [^.dict]
     outputBinding:
-      glob: $(inputs.input.basename)
+      glob: $(inputs.reference.basename)
