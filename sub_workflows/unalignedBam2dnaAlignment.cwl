@@ -22,9 +22,9 @@ inputs:
     doc: Reference fasta to use for merging in picard::MergeBamAlignment, should be associated with a picard sequence dictionary
 
 outputs:
-  mergedBam:
+  MergedAlignedBam:
     type: File
-    outputSource: mergeUnalignedAndAligned/mergedBamAlignment
+    outputSource: indexAlignedBam/bam_index
 
 steps:
   unalignedBAMToFastq:
@@ -66,3 +66,8 @@ steps:
       sort_order:
         valueFrom: 'coordinate'
     out: [ mergedBamAlignment ]
+  indexAlignedBam:
+    run: ../tools/bam_index.cwl
+    in:
+      bam_file: mergeUnalignedAndAligned/mergedBamAlignment
+    out: [ bam_index ]

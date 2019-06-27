@@ -1,0 +1,11 @@
+reference:
+  class: File
+  path:
+FastqToBam_input:
+- class: File
+  path:
+- class: File
+  path:
+FastqToBam_read_structures:
+- "151T"
+- "10M+T"

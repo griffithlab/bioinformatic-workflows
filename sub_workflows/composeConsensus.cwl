@@ -2,7 +2,7 @@
 
 cwlVersion: v1.0
 class: Workflow
-label: "bam to fastq conversion workflow"
+label: "compose a consensus sequence from a UMI tagged bam file"
 requirements:
     - class: SubworkflowFeatureRequirement
 
@@ -13,24 +13,6 @@ inputs:
   reference:
     type: File
     doc: Reference fasta to use for merging in picard::MergeBamAlignment
-#  FastqToBam_input:
-#    type: File[]
-#    doc: Array of fastq files for which to convert to bam with UMI (i.e. R1, R2, I1, I2), used in fgbio::FastqToBam
-#  FastqToBam_read_structures:
-#    type: string
-#    doc: The read structure within the reads specifying where the UMI, template, etc. is, used in fgbio::FastqToBam
-#  FastqToBam_sample:
-#    type: string?
-#    default: 'SampleA'
-#    doc: Sample name to add to the bam file, used in fgbio::FastqToBam
-#  FastqToBam_library:
-#    type: string?
-#    default: 'LibraryA'
-#    doc: Library name to add to the bam file, used in fgbio::FastqToBam
-#  FastqToBam_sequencing_center:
-#    type: string?
-#    default: 'SequencingCenterA'
-#    doc: Sequencing center to add to the bam file, used in fgbio::FastqToBam
   GroupReadsByUMI_strategy:
     type: string?
     default: 'adjacency'
@@ -65,7 +47,22 @@ inputs:
     doc: maximum read error rate, given as a trio for final consensus, first single-strand consensus, other single-strand consensus in fgbio::FilterConsensusReads
 
 outputs:
-  test:
+  rawAlignedBamFile:
+    type: File
+    outputSource: alignUMIBAM/MergedAlignedBam
+  mrkDupMetrics:
+    type: File
+    outputSource: umiMarkDuplicates/mrkDupMetrics
+  mrkDupUMIMetrics:
+    type: File
+    outputSource: umiMarkDuplicates/umiMrkDupMetrics
+  consensusBamFile:
+    type: File
+    outputSource: alignConsensusBam/MergedAlignedBam
+  consensusBamRejects:
+    type: File
+    outputSource: constructConsensus/consensusRejectsBam
+  consensusFilteredBamFile
     type: File
     outputSource: indexFilteredConsensusBam/bam_index
 
@@ -85,35 +82,26 @@ steps:
     in:
       reference: reference
     out: [ referenceIndex ]
-#  createUMIunmappedBam:
-#    run: ../tools/fgbio_FastqToBam.cwl
-#    in:
-#      input: FastqToBam_input
-#      read_structures: FastqToBam_read_structures
-#      sample: FastqToBam_sample
-#      library: FastqToBam_library
-#      sequencing_center: FastqToBam_sequencing_center
-#    out: [ UMIunmappedBam ]
   alignUMIBAM:
     run: unalignedBam2dnaAlignment.cwl
     in:
       bwaIndex: bwaIndex/referenceIndex
       bam: bam
       reference: createReferenceDict/referenceDict
-    out: [ mergedBam ]
+    out: [ MergedAlignedBam ]
   umiMarkDuplicates:
     run: ../tools/picard_UmiAwareMarkDuplicatesWithMateCigar.cwl
     in:
-      input: alignUMIBAM/mergedBam
+      input: alignUMIBAM/MergedAlignedBam
       assume_sort_order:
         valueFrom: "coordinate"
       remove_sequencing_duplicates:
         valueFrom: "false"
-    out: [ umiAwareMrkDup ]
+    out: [ umiAwareMrkDupBam, umiMrkDupMetrics, mrkDupMetrics ]
   groupUMIReads:
     run: ../tools/fgbio_GroupReadsByUmi.cwl
     in:
-      input: umiMarkDuplicates/umiAwareMrkDup
+      input: umiMarkDuplicates/umiAwareMrkDupBam
       strategy: GroupReadsByUMI_strategy
       edits: GroupReadsByUMI_edits
     out: [ groupedByUmi ]
@@ -122,18 +110,18 @@ steps:
     in:
       input: groupUMIReads/groupedByUmi
       min_reads: CallMolecularConsensus_min_reads
-    out: [ consensusBam ]
+    out: [ consensusBam, consensusRejectsBam ]
   alignConsensusBam:
     run: unalignedBam2dnaAlignment.cwl
     in:
       bwaIndex: bwaIndex/referenceIndex
       bam: constructConsensus/consensusBam
       reference: createReferenceDict/referenceDict
-    out: [ mergedBam ]
+    out: [ MergedAlignedBam ]
   filterConsensus:
     run: ../tools/fgbio_FilterConsensusReads.cwl
     in:
-      input: alignConsensusBam/mergedBam
+      input: alignConsensusBam/MergedAlignedBam
       ref: fastaIndex/referenceIndex
       min_reads: FilterConsensus_min_reads
       max_base_error_rate: FilterConsensus_max_base_error_rate

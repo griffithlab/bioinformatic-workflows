@@ -41,7 +41,15 @@ inputs:
       prefix: "REMOVE_SEQUENCING_DUPLICATES="
 
 outputs:
-  umiAwareMrkDup:
+  umiAwareMrkDupBam:
     type: File
     outputBinding:
       glob: "umiAwareMrkDup.bam"
+  umiMrkDupMetrics:
+    type: File
+    outputBinding:
+      glob: "umi_metrics.txt"
+  mrkDupMetrics:
+    type: File
+    outputBinding:
+      glob: "duplicateMetrics.txt"

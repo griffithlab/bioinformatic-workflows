@@ -16,17 +16,20 @@ arguments:
   - valueFrom: "consensus.bam"
     position: 1
     prefix: "--output"
+  - valueFrom: "consensusRejects.bam"
+    position: 2
+    prefix: "--rejects"
 
 inputs:
   input:
     type: File
     inputBinding:
-      position: 2
+      position: 3
       prefix: "--input"
   min_reads:
     type: string
     inputBinding:
-      position: 3
+      position: 4
       prefix: "--min-reads"
 
 outputs:
@@ -34,3 +37,7 @@ outputs:
     type: File
     outputBinding:
       glob: "consensus.bam"
+  consensusRejectsBam:
+    type: File
+    outputBinding:
+      glob: "consensusRejects.bam"
