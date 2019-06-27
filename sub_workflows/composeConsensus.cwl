@@ -70,11 +70,11 @@ outputs:
     outputSource: indexFilteredConsensusBam/bam_index
 
 steps:
-#  fastaIndex:
-#    run: ../tools/fastaIndex.cwl
-#    in:
-#      reference: reference
-#    out: [ referenceIndex ]
+  fastaIndex:
+    run: ../tools/samtools_faidx.cwl
+    in:
+      reference: reference
+    out: [ referenceIndex ]
   createReferenceDict:
     run: ../tools/picard_CreateSequenceDictionary.cwl
     in:
@@ -134,7 +134,7 @@ steps:
     run: ../tools/fgbio_FilterConsensusReads.cwl
     in:
       input: alignConsensusBam/mergedBam
-      ref: reference
+      ref: fastaIndex/referenceIndex
       min_reads: FilterConsensus_min_reads
       max_base_error_rate: FilterConsensus_max_base_error_rate
       max_read_error_rate: FilterConsensus_max_read_error_rate

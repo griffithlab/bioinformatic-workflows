@@ -25,6 +25,7 @@ inputs:
       prefix: "--input"
   ref:
     type: File
+    secondaryFiles: [ .fai ]
     inputBinding:
       position: 3
       prefix: "--ref"
