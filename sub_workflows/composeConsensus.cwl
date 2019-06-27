@@ -78,7 +78,7 @@ steps:
   createReferenceDict:
     run: ../tools/picard_CreateSequenceDictionary.cwl
     in:
-      reference: refer
+      reference: reference
     out: [ referenceDict ]
   bwaIndex:
     run: ../tools/bwa_index.cwl
