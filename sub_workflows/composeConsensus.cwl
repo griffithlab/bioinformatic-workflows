@@ -7,10 +7,6 @@ requirements:
     - class: SubworkflowFeatureRequirement
 
 inputs:
-  bwaIndex:
-    type: File
-    secondaryFiles: [ .amb, .ann, .bwt, .pac, .sa ]
-    doc: BWA reference index for which to align reads
   bam:
     type: File
     doc: Unaligned bam file for which to align
@@ -82,13 +78,13 @@ steps:
   createReferenceDict:
     run: ../tools/picard_CreateSequenceDictionary.cwl
     in:
-      reference: reference
+      reference: refer
     out: [ referenceDict ]
-#  bwaIndex:
-#    run: ../tools/bwaIndex.cwl
-#    in:
-#      reference: reference
-#    out: [ bwaIndex ]
+  bwaIndex:
+    run: ../tools/bwa_index.cwl
+    in:
+      reference: reference
+    out: [ referenceIndex ]
 #  createUMIunmappedBam:
 #    run: ../tools/fgbio_FastqToBam.cwl
 #    in:
@@ -101,7 +97,7 @@ steps:
   alignUMIBAM:
     run: unalignedBam2dnaAlignment.cwl
     in:
-      bwaIndex: bwaIndex
+      bwaIndex: bwaIndex/referenceIndex
       bam: bam
       reference: createReferenceDict/referenceDict
     out: [ mergedBam ]
