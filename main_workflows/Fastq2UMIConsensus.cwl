@@ -75,7 +75,7 @@ outputs:
   consensusBamRejects:
     type: File
     outputSource: createConsensus/consensusBamRejects
-  consensusFilteredBamFile
+  consensusFilteredBamFile:
     type: File
     outputSource: createConsensus/consensusFilteredBamFile
 

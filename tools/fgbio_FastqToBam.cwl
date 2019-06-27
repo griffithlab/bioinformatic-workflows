@@ -19,7 +19,7 @@ arguments:
 
 inputs:
   input:
-    type: File
+    type: File[]
     inputBinding:
       position: 2
       prefix: "--input"

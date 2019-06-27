@@ -1,4 +1,4 @@
-bin/env cwl-runner
+#!/usr/bin/env cwl-runner
 
 class: CommandLineTool
 

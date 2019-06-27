@@ -1,3 +1,5 @@
+################################################################################
+######################## Required Arguments ####################################
 reference:
   class: File
   path:
@@ -9,3 +11,25 @@ FastqToBam_input:
 FastqToBam_read_structures:
 - "151T"
 - "10M+T"
+################################################################################
+######################## Optional Arguments ####################################
+FastqToBam_sample: 'SampleA'
+FastqToBam_library: 'LibraryA'
+FastqToBam_sequencing_center: 'SequencingCenterA'
+GroupReadsByUMI_strategy: 'adjacency'
+GroupReadsByUMI_edits: '1'
+GroupReadsByUMI_min_map_q: '30'
+CallMolecularConsensus_min_reads: '1'
+FilterConsensus_min_reads:
+- 3
+- 1
+- 1
+FilterConsensus_min_base_quality: '30'
+FilterConsensus_max_base_error_rate:
+- .1
+- .1
+- .1
+FilterConsensus_max_read_error_rate:
+- .025
+- .025
+- .025

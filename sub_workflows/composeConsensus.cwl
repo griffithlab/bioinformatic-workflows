@@ -62,7 +62,7 @@ outputs:
   consensusBamRejects:
     type: File
     outputSource: constructConsensus/consensusRejectsBam
-  consensusFilteredBamFile
+  consensusFilteredBamFile:
     type: File
     outputSource: indexFilteredConsensusBam/bam_index
 
