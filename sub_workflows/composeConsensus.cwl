@@ -126,7 +126,7 @@ steps:
   alignConsensusBam:
     run: unalignedBam2dnaAlignment.cwl
     in:
-      bwaIndex: bwaIndex
+      bwaIndex: bwaIndex/referenceIndex
       bam: constructConsensus/consensusBam
       reference: createReferenceDict/referenceDict
     out: [ mergedBam ]
