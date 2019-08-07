@@ -10,6 +10,9 @@ inputs:
   bam:
     type: File
     doc: Bam file to make HLA predictions from
+  hla_reference:
+    type: File
+    doc: HLA reference to use for pre-filtering reads
 
 outputs:
   optitype_graph_out:
@@ -25,9 +28,21 @@ steps:
     in:
       bam: bam
     out: [fastq1, fastq2]
+  optitypePreFilterR1:
+    run: ../sub_workflows/optitypePreFilter.cwl
+    in:
+      fastq: bam2fastq/fastq2
+      reference: hla_reference
+    out: [ CandidateHLAFastq ]
+  optitypePreFilterR2:
+    run: ../sub_workflows/optitypePreFilter.cwl
+    in:
+      fastq: bam2fastq/fastq2
+      reference: hla_reference
+    out: [ CandidateHLAFastq ]
   optitype:
     run: ../tools/optitype.cwl
     in:
-      fastq1: bam2fastq/fastq1
-      fastq2: bam2fastq/fastq2
+      fastq1: optitypePreFilterR1/CandidateHLAFastq
+      fastq2: optitypePreFilterR2/CandidateHLAFastq
     out: [ optitype_prediction, optitype_graph ]
