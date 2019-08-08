@@ -14,7 +14,7 @@ requirements:
     coresMin: 8
 
 arguments:
-  - valueFrom: "7"
+  - valueFrom: "1"
     position: 1
     prefix: "-@"
   - valueFrom: "24G"

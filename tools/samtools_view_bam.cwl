@@ -14,9 +14,9 @@ requirements:
     coresMin: 8
 
 arguments:
-  - valueFrom: "8"
+  - valueFrom: "1"
     position: 1
-    prefix: "--threads"
+    prefix: "-@"
   - valueFrom: "-b"
     position: 2
 
