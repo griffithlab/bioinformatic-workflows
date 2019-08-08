@@ -32,7 +32,7 @@ steps:
     run: ../tools/bwa_mem.cwl
     in:
       reference: fastaHLADNAIndex/referenceIndex
-      fastq: [ fastq ]
+      fastq: fastq
     out: [ sam_alignment ]
     doc: screen the fastq for HLA reads with a bwa mem alignment
   filterScreen:
