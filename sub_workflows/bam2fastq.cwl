@@ -26,7 +26,7 @@ steps:
       file: bam
     out: [ bam_file ]
   namesortbam:
-    run: ../tools/name_sort_bam.cwl
+    run: ../tools/samtools_sort.cwl
     in:
       bam_file: convert2bam/bam_file
     out: [ sorted_bam ]

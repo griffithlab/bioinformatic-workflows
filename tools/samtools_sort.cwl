@@ -10,14 +10,14 @@ requirements:
   - class: DockerRequirement
     dockerPull: zlskidmore/samtools:1.9
   - class: ResourceRequirement
-    ramMin: 24000
+    ramMin: 28000
     coresMin: 8
 
 arguments:
   - valueFrom: "8"
     position: 1
     prefix: "--threads"
-  - valueFrom: "22G"
+  - valueFrom: "24G"
     position: 2
     prefix: "-m"
   - valueFrom: "-n"
