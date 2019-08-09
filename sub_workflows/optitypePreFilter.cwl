@@ -10,7 +10,7 @@ requirements:
 
 inputs:
   fastq:
-    type: File
+    type: File[]
     doc: fastq file for which to filter to HLA candidate reads (must only pass 1 fastq at a time if paired)
   reference:
     type: File
