@@ -10,7 +10,7 @@ requirements:
 
 inputs:
   fastq:
-    type: File[]
+    type: File
     doc: fastq file for which to filter to HLA candidate reads (must only pass 1 fastq at a time if paired)
   reference:
     type: File
@@ -32,7 +32,7 @@ steps:
     run: ../tools/bwa_mem.cwl
     in:
       reference: fastaHLADNAIndex/referenceIndex
-      fastq: fastq
+      fastq1: fastq
     out: [ sam_alignment ]
     doc: screen the fastq for HLA reads with a bwa mem alignment
   filterScreen:

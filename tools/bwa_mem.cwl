@@ -37,10 +37,14 @@ inputs:
       - .sa
     inputBinding:
       position: 5
-  fastq:
-    type: File[]
+  fastq1:
+    type: File
     inputBinding:
       position: 6
+  fastq2:
+    type: File?
+    inputBinding:
+      position: 7
 
 outputs:
   sam_alignment:

@@ -31,7 +31,7 @@ steps:
   optitypePreFilterR1:
     run: ../sub_workflows/optitypePreFilter.cwl
     in:
-      fastq: bam2fastq/fastq2
+      fastq: bam2fastq/fastq1
       reference: hla_reference
     out: [ CandidateHLAFastq ]
   optitypePreFilterR2:
