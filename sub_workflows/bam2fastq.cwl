@@ -21,7 +21,7 @@ outputs:
 
 steps:
   convert2bam:
-    run: ../tools/convert2bam.cwl
+    run: ../tools/samtools_view_convert2bam.cwl
     in:
       file: bam
     out: [ bam_file ]
@@ -29,9 +29,10 @@ steps:
     run: ../tools/samtools_sort.cwl
     in:
       bam_file: convert2bam/bam_file
+      sort_type: "-n"
     out: [ sorted_bam ]
   sam2fastq:
-    run: ../tools/sam2fastq.cwl
+    run: ../tools/picard_SamToFastq.cwl
     in:
       bam_file: namesortbam/sorted_bam
     out: [ fastq1, fastq2 ]

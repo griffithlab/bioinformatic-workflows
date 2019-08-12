@@ -20,14 +20,16 @@ arguments:
   - valueFrom: "24G"
     position: 2
     prefix: "-m"
-  - valueFrom: "-n"
-    position: 3
 
 inputs:
   bam_file:
     type: File
     inputBinding:
       position: 4
+  sort_type:
+    type: string?
+    inputBinding:
+      position: 3
 
 outputs:
   sorted_bam:

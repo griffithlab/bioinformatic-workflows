@@ -34,7 +34,7 @@ outputs:
 
 steps:
   kallisto_index:
-    run: ../tools/build_kallisto_index.cwl
+    run: ../tools/kallisto_index.cwl
     in:
       reference_file: reference
     out: [ kallisto_index ]
@@ -53,12 +53,12 @@ steps:
       secondstrand: secondstrand
     out: [expression_transcript_table, expression_transcript_h5, fusions, bam_file]
   sort_bam:
-    run: ../tools/sort_bam.cwl
+    run: ../tools/samtools_sort.cwl
     in:
       bam_file: kallisto_quant/bam_file
     out: [ sorted_bam ]
   index_bam:
-    run: ../tools/bam_index.cwl
+    run: ../tools/samtools_index_bam.cwl
     in:
       bam_file: sort_bam/sorted_bam
     out: [ bam_index ]

@@ -40,7 +40,7 @@ steps:
       fastq2: unalignedBAMToFastq/fastq2
     out: [ sam_alignment ]
   convertSamToBam:
-    run: ../tools/convert2bam.cwl
+    run: ../tools/picard_SamToFastq.cwl
     in:
       file: align/sam_alignment
     out: [ bam_file ]
@@ -68,7 +68,7 @@ steps:
         valueFrom: 'coordinate'
     out: [ mergedBamAlignment ]
   indexAlignedBam:
-    run: ../tools/bam_index.cwl
+    run: ../tools/samtools_index_bam.cwl
     in:
       bam_file: mergeUnalignedAndAligned/mergedBamAlignment
     out: [ bam_index ]

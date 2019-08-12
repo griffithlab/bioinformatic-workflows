@@ -129,7 +129,7 @@ steps:
       min_base_quality: FilterConsensus_min_base_quality
     out: [ filteredConsensusBam ]
   indexFilteredConsensusBam:
-    run: ../tools/bam_index.cwl
+    run: ../tools/samtools_index_bam.cwl
     in:
       bam_file: filterConsensus/filteredConsensusBam
     out: [ bam_index ]
