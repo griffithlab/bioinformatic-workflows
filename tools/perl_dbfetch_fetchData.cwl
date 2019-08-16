@@ -6,6 +6,8 @@ label: "query ensembl for HLA fasta records"
 requirements:
   - class: DockerRequirement
     dockerPull: zlskidmore/perl-cpanm:5.28.2
+  - class: ResourceRequirement
+    ramMin: 8000
 
 baseCommand: ["perl", "/usr/local/bin/dbfetch.pl", "fetchData"]
 

@@ -7,6 +7,8 @@ requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
     dockerPull: zlskidmore/r-bioc-cran:3.6.0
+  - class: ResourceRequirement
+    ramMin: 8000
 
 baseCommand: ["RScript", "/opt/scripts/R/optitype2imgt.R"]
 

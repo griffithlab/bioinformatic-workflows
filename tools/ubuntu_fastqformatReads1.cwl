@@ -7,6 +7,8 @@ requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
     dockerPull: ubuntu:18.04
+  - class: ResourceRequirement
+    ramMin: 8000
 
 baseCommand: cat
 
