@@ -28,7 +28,7 @@ outputs:
 
 steps:
   unalignedBAMToFastq:
-    run: ../tools/sam2fastq.cwl
+    run: ../tools/picard_SamToFastq.cwl
     in:
       bam_file: bam
     out: [ fastq1, fastq2 ]
@@ -40,7 +40,7 @@ steps:
       fastq2: unalignedBAMToFastq/fastq2
     out: [ sam_alignment ]
   convertSamToBam:
-    run: ../tools/picard_SamToFastq.cwl
+    run: ../tools/samtools_view_convert2bam.cwl
     in:
       file: align/sam_alignment
     out: [ bam_file ]

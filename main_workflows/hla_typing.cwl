@@ -15,7 +15,7 @@ inputs:
     doc: HLA reference to use for pre-filtering reads
   imgtAlleleList:
     type: File
-    doc: mapping between HLA names and IMGT ids available at: ftp://ftp.ebi.ac.uk/pub/databases/ipd/imgt/hla/Allelelist.3370.txt
+    doc: 'mapping between HLA names and IMGT ids available at: ftp://ftp.ebi.ac.uk/pub/databases/ipd/imgt/hla/Allelelist.3370.txt'
   reference:
     type: File
     doc: reference file containing all chromosomes, for competitive alignment (but no decoys)

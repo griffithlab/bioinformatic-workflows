@@ -1,4 +1,4 @@
-!/usr/bin/env cwl-runner
+#!/usr/bin/env cwl-runner
 
 cwlVersion: v1.0
 class: CommandLineTool
@@ -31,7 +31,7 @@ arguments:
   - "unique"
 
 outputs:
-  uniqueReadnames:
+  uniqueReadname:
     type: stdout
 
 stdout: uniqueReadNames.txt

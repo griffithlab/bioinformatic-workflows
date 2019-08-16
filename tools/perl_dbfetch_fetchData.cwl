@@ -1,5 +1,3 @@
-perl /usr/local/bin/dbfetch.pl fetchData imgthlagen:HLA00071,HLA00001,HLA00213,HLA00381,HLA00455,HLA00430 fasta raw > hla.fa
-
 #!/usr/bin/env cwl-runner
 
 cwlVersion: v1.0

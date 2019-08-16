@@ -24,7 +24,7 @@ outputs:
 
 steps:
   unalignedBAMToFastq:
-    run: ../tools/sam2fastq.cwl
+    run: ../tools/picard_SamToFastq.cwl
     in:
       bam_file: bam
     out: [ fastq1, fastq2 ]

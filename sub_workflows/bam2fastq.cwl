@@ -29,7 +29,8 @@ steps:
     run: ../tools/samtools_sort.cwl
     in:
       bam_file: convert2bam/bam_file
-      sort_type: "-n"
+      sort_type:
+        valueFrom: "-n"
     out: [ sorted_bam ]
   sam2fastq:
     run: ../tools/picard_SamToFastq.cwl

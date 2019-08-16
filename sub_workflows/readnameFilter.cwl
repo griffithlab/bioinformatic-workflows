@@ -24,25 +24,26 @@ outputs:
 
 steps:
   extractReadName_fq1:
-    run: ../tools/ubuntu_formatReads1.cwl
+    run: ../tools/ubuntu_fastqformatReads1.cwl
     in:
       fastq: fastq1
     out: [ readnames ]
-  extractReadName_fq2
-    run: ../tools/ubuntu_formatReads1.cwl
+  extractReadName_fq2:
+    run: ../tools/ubuntu_fastqformatReads1.cwl
     in:
       fastq: fastq2
     out: [ readnames ]
   uniqueFastqReadname:
     run: ../tools/ubuntu_sort_unique_fastq.cwl
     in:
-      readnames1: extractReadName_fq1
-      readnames2: extractReadName_fq2
+      readnames1: extractReadName_fq1/readnames
+      readnames2: extractReadName_fq2/readnames
     out: [ uniqueReadname ]
   filterBamByReadname:
     run: ../tools/picard_FilterSamReads.cwl
     in:
       INPUT: bam
       READ_LIST_FILE: uniqueFastqReadname/uniqueReadname
-      FILTER: "includeReadList"
+      FILTER:
+        valueFrom: "includeReadList"
     out: [ readnameFilteredBam ]

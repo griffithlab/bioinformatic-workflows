@@ -12,7 +12,7 @@ inputs:
     doc: optitype HLA predictions
   imgtAlleleList:
     type: File
-    doc: mapping between HLA names and IMGT ids available at: ftp://ftp.ebi.ac.uk/pub/databases/ipd/imgt/hla/Allelelist.3370.txt
+    doc: 'mapping between HLA names and IMGT ids available at: ftp://ftp.ebi.ac.uk/pub/databases/ipd/imgt/hla/Allelelist.3370.txt'
   reference:
     type: File
     doc: reference file containing all chromosomes (but no decoys)
@@ -20,7 +20,7 @@ inputs:
 outputs:
   hlaReference:
     type: File
-    outputSource:
+    outputSource: createHLAReference/hlaReference
     doc: fasta file with the correct HLA sequence instead of decoys
 
 steps:

@@ -29,7 +29,7 @@ arguments:
   - valueFrom: "|"
     shellQuote: False
   - "sed"
-  - "s/\/\(1\|2\)$//"
+  - 's/\/\(1\|2\)$//'
 
 outputs:
   readnames:
