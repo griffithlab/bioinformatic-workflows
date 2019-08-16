@@ -36,7 +36,7 @@ steps:
       fastq2: unalignedBAMToFastq/fastq2
     out: [ sam_alignment ]
   convertSamToBam:
-    run: ../tools/picard_SamToFastq.cwl
+    run: ../tools/samtools_view_convert2bam.cwl
     in:
       file: align/sam_alignment
     out: [ bam_file ]

@@ -21,6 +21,7 @@ inputs:
     inputBinding:
       position: 1
       prefix: "imgthlagen:"
+      separate: false
 
 outputs:
   hlaReference:

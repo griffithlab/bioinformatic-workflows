@@ -26,7 +26,7 @@ inputs:
       position: -1
 
 outputs:
-  imgtID:
+  hlaIMGTID:
     type: string
     outputBinding:
       glob: imgtID.txt

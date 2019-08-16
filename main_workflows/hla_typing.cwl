@@ -75,7 +75,7 @@ steps:
   bwaIndex:
     run: ../tools/bwa_index.cwl
     in:
-      reference: composeHLAReference/reference
+      reference: composeHLAReference/hlaReference
     out: [ referenceIndex ]
   alignHLAReads:
     run: ../sub_workflows/unalignedBam2dnaAlignment_v2.cwl
